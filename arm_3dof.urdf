@@ -1,0 +1,86 @@
+<robot name="robot_arm">
+ 	<link name="base_link">
+		<visual>
+		    <origin xyz="0 0 0.0225" rpy="0 0 0"/>
+			<geometry>
+				<cylinder length="0.05" radius="0.2"/>
+			</geometry>
+      <material name="black">
+        <color rgba="0.5 0 0.1 1"/>
+      </material>
+      
+		</visual>	
+	</link>
+
+
+
+    <link name="base_rot">
+		<visual>
+        <geometry>
+          <box size="0.15 0.15 0.05" /> 
+			  </geometry>
+        <material name="orange">
+          <color rgba="0 0 1 1"/>
+        </material>
+      
+		</visual>	
+	</link>
+    
+    <joint name="base_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="base_rot"/>
+      <origin xyz="0 0 0.072" rpy="0 0 0" />
+      <axis xyz="0 0 -1"/>
+    </joint>
+    
+
+
+
+
+    <link name="arm1">
+		<visual>
+      <origin xyz="0 0 0.119" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="0.238" radius="0.05"/>
+			  </geometry>
+        <material name="red">
+          <color rgba="0 0.5 0.2 1"/>
+        </material>
+		</visual>	
+	</link>
+    <joint name="shoulder_joint" type="revolute">
+      <parent link="base_rot"/>
+      <child link="arm1"/>
+      <origin xyz="0 0 0.027" rpy="0 0 0" />
+      <axis xyz="1 0 0"/>
+      <limit lower="-1.57" upper="1.57" />
+    </joint>
+    
+
+
+
+
+
+
+  <link name="arm2">
+		<visual>
+      <origin xyz="0.19 0 0.075" rpy="0 1 0" />
+        <geometry>
+          <cylinder length="0.5" radius="0.04"/>
+			  </geometry>
+        <material name="green">
+          <color rgba="0 0 1 1"/>
+        </material>
+		</visual>	
+	</link>
+    
+    <joint name="elbow_joint" type="revolute">
+      <parent link="arm1"/>
+      <child link="arm2"/>
+      <origin xyz="0 0 0.238" rpy="0 0 0" />
+      <axis xyz="1 0 0"/>
+        <limit lower="-1.92" upper="1.92" />
+    </joint>
+    
+     
+</robot>
